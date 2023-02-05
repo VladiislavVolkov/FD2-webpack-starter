@@ -1,0 +1,21 @@
+@use '../../scss/mixins.scss' as *;
+
+.btn {
+    @include btn;
+    &:hover {
+        background-color: white;    
+        color: black;
+    }
+}
+
+.btn_one {
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
+.btn_two {
+    background-color: rgb(244, 230, 78);
+    color: rgb(23, 23, 23);
+    border-color: grey;
+}
