@@ -90,6 +90,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         { from: `${PATHS.src}/assets/images`, to: 'assets/images' },
+        { from: `${PATHS.src}/assets/sounds`, to: 'assets/sounds' },
         { from: `${PATHS.src}/public`, to: '' },
       ],
     }),
