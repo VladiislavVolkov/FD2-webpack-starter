@@ -1,0 +1,31 @@
+@use '../../scss/colors.scss' as *;
+
+.header {
+  background-color: $primary-color;
+  display: grid;
+  padding: 0 24px;
+  align-items: center;
+  &__logo {
+    &-image {
+      width: 60px;
+      height: 60px;
+    }
+  }
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  &__link {
+    text-decoration: none;
+    &--active {
+      color: black;
+    }
+  }
+}
+
+
+.header .header_btn {
+  background-color: red;
+}

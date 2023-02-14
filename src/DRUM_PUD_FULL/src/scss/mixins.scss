@@ -1,0 +1,7 @@
+@mixin text($color: red) {
+    font-size: 14px;
+    color: $color;
+    line-height: 18px;
+}
+
+$red: red
