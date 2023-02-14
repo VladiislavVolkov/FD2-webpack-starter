@@ -1,42 +1,48 @@
-import './main.scss';
-import { KEY_MAP, KEYS } from './constants';
-
-const pads = document.querySelectorAll('.pad');
-const visual = document.querySelector('.visual');
-
-const playSound = (key) => {
-  const sound = KEY_MAP[key];
-  const audio = new Audio(sound);
-  audio.load();
-  audio.play();
-};
-
-const animatePad = (key) => {
-  const pad = Array.from(pads).find((item) => item.dataset.key === key);
-  pad.style.animation = 'dance .3s linear';
-  pad.addEventListener('animationend', () => {
-    pad.style.animation = 'none';
-  });
-};
-
-const createBuble = () => { 
-  const element = document.createElement('div');
-  visual.append(element);
-  element.style.animation = 'jump 1s linear';
-  element.style.background = 'red';
-  element.addEventListener('animationend', () => {
-    element.remove();
-  })
-};
-
-const onKeyPress = ({ code }) => {
-  if (KEYS[code]) {
-    playSound(code);
-    animatePad(code);
-    createBuble();
-  } else {
-    console.log('Error!');
+class ToDo {
+  construction() {
+    this._tasks = [];
   }
-};
 
-window.addEventListener('keypress', onKeyPress);
+  createTask(title, description) {
+    this._tasks.push({
+      title,
+      description,
+      id: this._tasks.length + 1,
+      isCompleted: false,
+      date: new Date(),
+    });
+  }
+
+  getAllTasks() {
+    if (this._tasks.length) {
+      return this._tasks;
+    } else {
+      console.log('Not tasks!');
+    }
+  }
+
+  deleteTask(id) {
+    this._tasks = this._tasks.filter((item) => item.id == id);
+  }
+
+  completedTasks(id) {
+    this.task = this._tasks.map((item) => {
+      if (item.id === id) {
+        return {
+          isCompleted: true,
+          ...item,
+        };
+      }
+      return item;
+    });
+  }
+
+  getTask(id) {
+    this._tasks = this._tasks.find((item) => {
+      if(item.id === id) {
+
+      };
+    });
+  }
+
+}
