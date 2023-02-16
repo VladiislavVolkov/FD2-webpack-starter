@@ -13,5 +13,5 @@ export const KEY_MAP = {
   [KEYS.KeyD]: '../assets/sounds/snare.wav',
   [KEYS.KeyF]: '../assets/sounds/openhat.wav',
   [KEYS.KeyG]: '../assets/sounds/long-crash.wav',
-  [KEYS.KeyH]: '../assets/sounds/hihat.wav',
+  [KEYS.KeyH]: '../assets/sounds/hitcat.wav',
 };

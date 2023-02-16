@@ -27,14 +27,17 @@ header p {
 }
 
 .pads {
-  background: lightblue;
+  background: rgb(104, 148, 163);
   width: 100%;
   display: flex;
 }
 .pads > div {
-  height: 200px;
+  height: 300px;
   width: 100px;
   flex: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .pads > div > div {
