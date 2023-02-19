@@ -1,4 +1,2 @@
-import './components/Card/Card';
-import './components/SearchBar/SearchBar';
-
+import './components/Form/Form';
 import './main.scss';
