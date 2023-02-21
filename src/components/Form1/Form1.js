@@ -15,54 +15,58 @@ class Form1 extends HTMLElement {
 
   render() {
     this.innerHTML = `<form action="" method="get" class="form"><div class="name-form">Форма #1</div></form>`;
-    for (let key in this.dataForm1) {
-      if (this.dataForm1[key].label) {
+    let keys = this.dataForm1;
+    for (let i = 0; i < keys.length; i++) {
+      const firstLevel = keys[i];
+      if (firstLevel.label) {
         const label = document.createElement('div');
         label.classList.add('mb-3');
-        label.innerHTML = `<label class="form-label" id="${this.dataForm1[key].name}">${this.dataForm1[key].label}</label>`;
+        label.innerHTML = `<label class="form-label" id="${firstLevel.name}">${firstLevel.label}</label>`;
         document.querySelectorAll('.form')[0].appendChild(label);
-        if (this.dataForm1[key].kind === 'longtext') {
-          const longtext = `<input type="text" id="${this.dataForm1[key].name}" name="${this.dataForm1[key].name}" class="form-control ${this.dataForm1[key].kind}"/>`;
-          label.insertAdjacentHTML('beforeend', longtext);
-        } else if (this.dataForm1[key].kind === 'number') {
-          const number = `<input type="text" id="${this.dataForm1[key].name}" name="${this.dataForm1[key].name}" class="form-control ${this.dataForm1[key].kind}"/>`;
-          label.insertAdjacentHTML('beforeend', number);
-        } else if (this.dataForm1[key].kind === 'shorttext') {
-          const shorttext = `<input type="text" id="${this.dataForm1[key].name}" name="${this.dataForm1[key].name}" class="form-control ${this.dataForm1[key].kind}"/>`;
-          label.insertAdjacentHTML('beforeend', shorttext);
-        } else if (this.dataForm1[key].kind === 'combo') {
-          const combo = `<select class="form-select" id="${this.dataForm1[key].name}">`;
-          label.insertAdjacentHTML('beforeend', combo);
-          for (let i = 0; i < this.dataForm1[key].variants.length; i++) {
-            const variants = `<option value="${this.dataForm1[key].variants[i].value}">${this.dataForm1[key].variants[i].text}</option>`;
-            document.querySelector('.form-select').insertAdjacentHTML('beforeend', variants);
+        const secondLevel = firstLevel.variants;
+        switch (firstLevel.kind) {
+          case 'longtext':
+          case 'shorttext':
+          case 'number': {
+            const caseTextAndNumber = `
+              <input type="text" id="${firstLevel.kind}" name="${firstLevel.kind}" class="form-control ${firstLevel.kind}"/>`;
+            label.insertAdjacentHTML('beforeend', caseTextAndNumber);
+            break;
           }
-        } else if (this.dataForm1[key].kind === 'radio') {
-          for (let i = 0; i < this.dataForm1[key].variants.length; i++) {
-            const radio = document.createElement('div');
-            radio.classList.add('form-check');
-            radio.innerHTML = `
-              <input class="form-check-input" type="radio" 
-                name="radioForm" 
-                id="${this.dataForm1[key].variants[i].value}">
-              <label class="form-check-label" 
-                for="${this.dataForm1[key].variants[i].value}">
-                ${this.dataForm1[key].variants[i].text}
-              </label>`;
-            document.getElementById('payment').append(radio);
+          case 'combo': {
+            const combo = `<select class="form-select" id="${firstLevel.kind}">`;
+            label.insertAdjacentHTML('beforeend', combo);
+            for (let i = 0; i < secondLevel.length; i++) {
+              const variants = `<option value="${secondLevel[i].value}">${secondLevel[i].text}</option>`;
+              document.querySelector('.form-select').insertAdjacentHTML('beforeend', variants);
+            }
+            break;
           }
-        } else if (this.dataForm1[key].kind === 'check') {
-          const check = `
-            <input class="form-check-input" type="checkbox" value="" id="${this.dataForm1[key].name}" />
-            <label class="form-check-label" for="${this.dataForm1[key].name}"></label>`;
-          label.insertAdjacentHTML('beforeend', check);
-        } else if (this.dataForm1[key].kind === 'memo') {
-          const memo = `
-            <textarea class="form-control" id="${this.dataForm1[key].name}" rows="3"></textarea>`;
-          label.insertAdjacentHTML('beforeend', memo);
+          case 'radio':
+            for (let i = 0; i < secondLevel.length; i++) {
+              const radio = document.createElement('div');
+              radio.classList.add('form-check');
+              radio.innerHTML = `
+                <input class="form-check-input" type="radio" name="radioForm" id="${secondLevel[i].value}">
+                <label class="form-check-label" for="${secondLevel[i].value}">${secondLevel[i].text} </label>`;
+              document.getElementById('payment').append(radio);
+            }
+            break;
+          case 'check': {
+            const check = `
+              <input class="form-check-input" type="checkbox" value="" id="${firstLevel.name}" />
+              <label class="form-check-label" for="${firstLevel.name}"></label>`;
+            label.insertAdjacentHTML('beforeend', check);
+            break;
+          }
+          case 'memo': {
+            const memo = `<textarea class="form-control" id="${firstLevel.name}" rows="3"></textarea>`;
+            label.insertAdjacentHTML('beforeend', memo);
+            break;
+          }
         }
-      } else if (!this.dataForm1[key].label) {
-        const button = `<button type="submit" class="btn btn-primary">${this.dataForm1[key].caption}</button>`;
+      } else {
+        const button = `<button type="submit" class="btn btn-primary">${firstLevel.caption}</button>`;
         document.querySelectorAll('.form')[0].insertAdjacentHTML('beforeend', button);
       }
     }
