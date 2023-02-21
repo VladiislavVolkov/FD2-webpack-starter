@@ -4,18 +4,16 @@ import { FORM_DEF2 } from '../Const';
 class Form2 extends HTMLElement {
   constructor() {
     super();
-    this.dataForm2 = FORM_DEF2;
+    this.dataForm = FORM_DEF2;
   }
 
   connectedCallback() {
     this.render();
   }
 
-  disconnectedCallback() {}
-
   render() {
     this.innerHTML = `<form action="" method="get" class="form"><div class="name-form">Форма #2</div></form>`;
-    let keys = this.dataForm2;
+    let keys = this.dataForm;
     for (let i = 0; i < keys.length; i++) {
       const firstLevel = keys[i];
       const kind = firstLevel.kind;
