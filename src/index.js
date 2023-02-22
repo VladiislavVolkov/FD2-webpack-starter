@@ -1,3 +1,2 @@
-import './components/Form1/Form1';
-import './components/Form2/Form2';
+import './components/ToDo/ToDo';
 import './main.scss';
