@@ -48,27 +48,32 @@ class ToDo {
   }
 
   // сортировка по приоритету (если тру - то выше)
+  // sortPriority() {
+  //   this.data = this.data.sort((x, y) => {
+  //     const a = y;
+  //     const b = x;
+  //     if (a.priority < b.priority) {
+  //       return -1;
+  //     }
+  //     if (a.priority > b.priority) {
+  //       return 1;
+  //     }
+  //     return 0;
+  //   });
+  //   console.log(this.data);
+  // }
+
   sortPriority() {
-    this.data = this.data.sort((x, y) => {
-      const a = y;
-      const b = x;
-      if (a.priority < b.priority) {
-        return -1;
-      }
-      if (a.priority > b.priority) {
-        return 1;
-      }
-      return 0;
-    });
+    this.data.sort((x, y) => x.priority - y.priority);
     console.log(this.data);
   }
 
   //фильтрация по title - сделал вывод в новом массиве( Правильно ли? )
   filtredTitle(value) {
     const newData = this.data.filter((item) => {
-      const search = value.toLocaleLowerCase();
-      const titleTask = item.title;
-      return titleTask.toLocaleLowerCase().includes(search);
+      const search = value.toLowerCase();
+      const titleTask = item.title.toLowerCase();
+      return titleTask.includes(search);
     });
     console.log(newData);
   }
