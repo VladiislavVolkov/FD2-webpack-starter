@@ -1,13 +1,9 @@
 import './Card.scss';
 
 class WebComponentCard extends HTMLElement {
-  disconnectedCallback() {
-    console.log('Удален');
-    this.removeEventListener('click', this.onRemove);
-  }
-
   onRemove = (evt) => {
     // this.remove();
+    console.log(evt.target);
     if (evt.target.closest('.card__button')) {
       this.remove();
     }
@@ -18,6 +14,10 @@ class WebComponentCard extends HTMLElement {
     // const btn = this.querySelector('.card__button');
     // btn.addEventListener('click', this.onRemove);
     this.addEventListener('click', this.onRemove);
+  }
+
+  disconnectedCallback() {
+    this.removeEventListener('click', this.onRemove);
   }
 
   render() {
