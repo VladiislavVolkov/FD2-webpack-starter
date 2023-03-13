@@ -2,17 +2,18 @@ import './Card.scss';
 
 class WebComponentCard extends HTMLElement {
   onRemove = (evt) => {
-    // this.remove();
-    console.log(evt.target);
     if (evt.target.closest('.card__button')) {
       this.remove();
+      console.log(evt.target);
+    }
+    if (evt.target.closest('.card__header ')) {
+      this.remove();
+      console.log(evt.target);
     }
   };
 
   connectedCallback() {
     this.render();
-    // const btn = this.querySelector('.card__button');
-    // btn.addEventListener('click', this.onRemove);
     this.addEventListener('click', this.onRemove);
   }
 
