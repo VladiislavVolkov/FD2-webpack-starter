@@ -10,6 +10,7 @@ class WebComponentCard extends HTMLElement {
       this.remove();
       console.log(evt.target);
     }
+    console.log('просто нажали');
   };
 
   connectedCallback() {
